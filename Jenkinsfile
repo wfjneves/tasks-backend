@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Quality Gate') {
             steps {
-                sleep(25)
+                sleep(15)
                 timeout(time:1, unit: 'MINUTES'){
                     waitForQualityGate abortPipeline: true
                 }
@@ -48,6 +48,14 @@ pipeline {
                     git credentialsId: 'github_login', url: 'https://github.com/wfjneves/tasks-frontend.git'
                     bat 'mvn clean package'
                     deploy adapters: [tomcat8(credentialsId: 'TomcatLogin', path: '', url: 'http://localhost:8001')], contextPath: 'tasks', war: 'target/tasks.war'
+                }
+            }
+        }
+        stage('Functional Test') {
+            steps {
+                dir('functionalTest') {
+                    git credentialsId: 'github_login', url: 'https://github.com/wfjneves/tasks-functional-tests.git'
+                    bat 'mvn test'
                 }
             }
         }
