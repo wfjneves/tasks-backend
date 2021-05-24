@@ -62,7 +62,7 @@ pipeline {
         stage('Deploy to Production') {
             steps {
                 bat 'docker build .';
-                bat 'docker-compose up';
+                bat 'docker-compose up -d';
             }
         }
     }
