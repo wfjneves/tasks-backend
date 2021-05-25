@@ -78,7 +78,8 @@ pipeline {
     }
     post {
     	always {
-    		junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml, api-test/target/surefire-reports/*.xml, functionalTest/target/surefire-reports/*.xml, functionalTest/target/failsafe-reports/*IT.xml '
+    		junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml, api-test/target/surefire-reports/*.xml, functionalTest/target/surefire-reports/*.xml, functionalTest/target/failsafe-reports/*IT.xml ';
     	}
+    }
     
 }
